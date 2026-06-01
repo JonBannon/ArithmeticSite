@@ -1,1 +1,10 @@
-/.lake
+# Lean build artifacts
+.lake/build/
+.lake/packages/
+
+# Blueprint build output
+blueprint/web/
+
+# OS junk
+.DS_Store
+Thumbs.db
