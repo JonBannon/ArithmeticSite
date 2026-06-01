@@ -30,13 +30,6 @@ lemma NBar_add_idempotent (a : NBar) : a + a = a := by
 
 open Tropical
 
-example (a b : Tropical (WithTop ℕ)) : a * b = trop (untrop a + untrop b) := by
-  simp only [trop_add, trop_untrop]
-
-example : (0 : NBar) = trop ⊤ := by rfl
-
-example : (1 : NBar) = trop 0 := by rfl
-
 def frobeniusEndomorphism (n : ℕ+) : AddMonoid.End NBar where
   toFun x := trop (n : WithTop ℕ) * x
   map_zero' := by rfl
