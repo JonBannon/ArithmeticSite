@@ -4,9 +4,8 @@
   Let $\Nplus$ denote the set $\{1, 2, 3, \ldots\}$ of strictly positive
   integers equipped with ordinary multiplication. This is a commutative
   monoid with unit $1$.
-
   In Lean we represent this as \texttt{PNat} with its multiplicative
-  structure.
+  structure, via the abbreviation \texttt{NPos}.
 \end{definition}
 
 \begin{definition}[label=def:BNplus, uses=def:Nplus]
@@ -27,15 +26,18 @@
     \item \emph{Tropical multiplication}: $a \odot b := a + b$
           (ordinary addition), with identity element $0$.
   \end{itemize}
-  In Lean, $\Nbar$ is represented as \texttt{Tropical (WithTop ℕ)}.
+  In Lean, $\Nbar$ is represented as \texttt{Tropical (WithTop ℕ)},
+  via the abbreviation \texttt{NBar}.
+  The zero element is \texttt{trop ⊤} (i.e.\ $+\infty$) and the
+  multiplicative identity is \texttt{trop 0}.
 \end{definition}
 
 \begin{lemma}[label=lem:Nbar_semiring, uses=def:Nbar]
   $\Nbar$ is a commutative semiring.
 \end{lemma}
 \begin{proof}
-  This follows from the Mathlib instance
-  \texttt{Tropical.instCommSemiring} applied to \texttt{WithTop ℕ}.
+  This is the Mathlib instance \texttt{CommSemiring (Tropical (WithTop ℕ))},
+  found by \texttt{inferInstance}.
 \end{proof}
 
 \begin{lemma}[label=lem:Nbar_idempotent, uses=def:Nbar]
@@ -43,22 +45,61 @@
   $a \in \Nbar$.
 \end{lemma}
 \begin{proof}
-  $a \oplus a = \min(a,a) = a$.
+  $a \oplus a = \min(a,a) = a$. In Lean this follows from
+  \texttt{Tropical.add\_eq\_left}.
 \end{proof}
 
-\begin{definition}[label=def:Nplus_action_Nbar, uses=def:Nplus, def:Nbar]
-  The monoid $\Nplus$ acts on $\Nbar$ by the \emph{Frobenius
-  endomorphisms}: for $n \in \Nplus$ and $x \in \Nbar$,
+\begin{definition}[label=def:frobenius, uses=def:Nbar]
+  For each $n \in \Nplus$, the \emph{Frobenius endomorphism}
+  $\varphi_n : \Nbar \to \Nbar$ is defined by
   \[
-    \varphi_n(x) := n \odot x = n + x \quad (x \in \mathbb{N}),
-    \qquad \varphi_n(+\infty) := +\infty.
+    \varphi_n(x) := n + x \quad (x \in \mathbb{N}),
+    \qquad \varphi_n(+\infty) := +\infty,
   \]
+  where $+$ denotes ordinary addition in $\mathbb{N} \cup \{+\infty\}$.
+  Equivalently, in \texttt{Tropical (WithTop ℕ)}, this is tropical
+  multiplication by \texttt{trop (n : WithTop ℕ)}, i.e.\
+  $\varphi_n(x) = \texttt{trop}\, n \odot x$.
+
+  In Lean, $\varphi_n$ is defined as an \texttt{AddMonoid.End NBar}
+  via \texttt{frobeniusEndomorphism}.
 \end{definition}
 
-\begin{lemma}[label=lem:phi_n_semiring_hom, uses=def:Nplus_action_Nbar]
-  For each $n \in \Nplus$, the map $\varphi_n : \Nbar \to \Nbar$ is a
-  semiring homomorphism.
+\begin{lemma}[label=lem:frobenius_addmon_hom, uses=def:frobenius]
+  For each $n \in \Nplus$, the map $\varphi_n : \Nbar \to \Nbar$ is an
+  additive monoid endomorphism, i.e.\ it preserves tropical addition and
+  the zero element $+\infty$:
+  \begin{align*}
+    \varphi_n(+\infty) &= +\infty, \\
+    \varphi_n(a \oplus b) &= \varphi_n(a) \oplus \varphi_n(b).
+  \end{align*}
+  The second identity follows from the distributivity
+  $n + \min(a,b) = \min(n+a, n+b)$.
 \end{lemma}
+
+\begin{remark}
+  Note that $\varphi_n$ is \emph{not} a semiring homomorphism in general,
+  since it does not preserve the multiplicative identity:
+  $\varphi_n(0) = n \neq 0$ for $n > 0$.
+  It is however a homomorphism of $\Nbar$-modules.
+\end{remark}
+
+\begin{lemma}[label=lem:frobenius_comp, uses=def:frobenius]
+  The Frobenius endomorphisms satisfy the composition law
+  \[
+    \varphi_m \circ \varphi_n = \varphi_{m+n}
+  \]
+  for all $m, n \in \Nplus$. In particular, the map
+  $n \mapsto \varphi_n$ is a semigroup homomorphism from
+  $(\Nplus, +)$ into the endomorphism semigroup
+  $\mathrm{End}_{\mathrm{AddMon}}(\Nbar)$.
+\end{lemma}
+\begin{proof}
+  For any $x \in \Nbar$:
+  $(\varphi_m \circ \varphi_n)(x) = m + (n + x) = (m+n) + x = \varphi_{m+n}(x)$.
+  In Lean this is \texttt{frobenius\_comp}, proved via \texttt{mul\_assoc}
+  in \texttt{Tropical (WithTop ℕ)}.
+\end{proof}
 
 \chapter{The presheaf topos $\PSh{\Nplus}$}
 
@@ -71,11 +112,80 @@
 
 \begin{lemma}[label=lem:presheaf_topos_is_topos, uses=def:presheaf_topos]
   $\PSh{\Nplus}$ is a Grothendieck topos.
-\end{lemma}
+\end{lemma>
 \begin{proof}
   Any presheaf category on a small category is a Grothendieck topos.
 \end{proof}
 
 \chapter{The structure sheaf}
 
-\begin{definition}
+\begin{definition}[label=def:structure_sheaf,
+                  uses=def:presheaf_topos, def:Nbar, def:frobenius]
+  The \emph{structure sheaf} $\mathcal{O}$ of the Arithmetic Site is the
+  object of $\PSh{\Nplus}$ whose underlying set is $\Nbar$ and whose
+  $\Nplus$-action is given by the Frobenius endomorphisms:
+  $n \cdot x := \varphi_n(x)$.
+\end{definition}
+
+\begin{lemma}[label=lem:structure_sheaf_action,
+             uses=def:structure_sheaf, lem:frobenius_comp]
+  The assignment $n \mapsto \varphi_n$ defines a semigroup homomorphism
+  $(\Nplus, +) \to \mathrm{End}_{\mathrm{AddMon}}(\Nbar)$,
+  making $\Nbar$ into a left $(\Nplus, +)$-module.
+\end{lemma>
+
+\chapter{The Arithmetic Site}
+
+\begin{definition}[label=def:arithmetic_site,
+                  uses=def:presheaf_topos, def:structure_sheaf]
+  The \emph{Arithmetic Site} is the pair $(\PSh{\Nplus}, \mathcal{O})$
+  consisting of the presheaf topos $\PSh{\Nplus}$ together with its
+  structure sheaf $\mathcal{O}$.
+\end{definition}
+
+\chapter{Points of the topos}
+
+\begin{definition}[label=def:topos_point, uses=def:presheaf_topos]
+  A \emph{point} of a topos $\mathcal{E}$ is a geometric morphism
+  $p : \Cat{Set} \to \mathcal{E}$, i.e.\ an adjoint pair
+  $p^* \dashv p_*$ where $p^*$ is left exact.
+\end{definition}
+
+\begin{theorem}[label=thm:points_are_adele_classes,
+               uses=def:topos_point, def:arithmetic_site]
+  The points of $\PSh{\Nplus}$ are in natural bijection with the
+  adèle class space $\Qplus \backslash \Af / \Zhat^*$.
+\end{theorem}
+\begin{proof}
+  \sorry
+\end{proof}
+
+\chapter{The Frobenius correspondences}
+
+\begin{definition}[label=def:frobenius_correspondence,
+                  uses=def:arithmetic_site]
+  For each $\lambda \in \Qplus$, the \emph{Frobenius correspondence}
+  $\Phi_\lambda$ is a correspondence on $\PSh{\Nplus} \times \PSh{\Nplus}$
+  arising from the scaling action of $\Qplus$ on the adèle class space.
+\end{definition}
+
+\begin{theorem}[label=thm:frobenius_are_correspondences,
+               uses=def:frobenius_correspondence,
+               thm:points_are_adele_classes]
+  The Frobenius correspondences realize the scaling action of $\Qplus$
+  on the adèle class space at the level of the topos $\PSh{\Nplus}$.
+\end{theorem}
+\begin{proof}
+  \sorry
+\end{proof}
+
+\chapter{Connection to the Riemann zeta function}
+
+\begin{theorem}[label=thm:zeta_counting,
+               uses=thm:frobenius_are_correspondences]
+  The Hasse--Weil zeta function of the Arithmetic Site recovers the
+  Riemann zeta function $\zeta(s)$.
+\end{theorem}
+\begin{proof}
+  \sorry
+\end{proof}

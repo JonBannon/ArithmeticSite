@@ -53,6 +53,4 @@ lemma frobenius_map_add (m n : ℕ+) :
     (frobeniusEndomorphism m).comp (frobeniusEndomorphism n) :=
   frobenius_comp m n
 
-
-
 end ArithmeticSite
