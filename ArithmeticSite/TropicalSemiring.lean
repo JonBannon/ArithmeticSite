@@ -2,6 +2,7 @@ module
 
 public import Mathlib.Algebra.Order.Group.Nat
 public import Mathlib.Algebra.Tropical.Basic
+public import ArithmeticSite.Monoid
 
 @[expose] public section
 
@@ -32,13 +33,33 @@ open Tropical
 example (a b : Tropical (WithTop ℕ)) : a * b = trop (untrop a + untrop b) := by
   simp only [trop_add, trop_untrop]
 
-/-- The Frobenius endomorphism φ_n on N̄, given by tropical multiplication by n.
-    On finite elements this is x ↦ n + x, and φ_n(+∞) = +∞. -/
-def frobeniusEndomorphism (n : ℕ+) : NBar →+* NBar where
-  toFun x := (trop (n : WithTop ℕ)) * x
-  map_one' := by simp [Tropical.trop_one]
-  map_mul' := by simp [mul_comm, mul_assoc]
-  map_zero' := by simp [Tropical.trop_zero]
-  map_add' := by simp [Tropical.add_def, min_add_add_left]
+example : (0 : NBar) = trop ⊤ := by rfl
+
+example : (1 : NBar) = trop 0 := by rfl
+
+def frobeniusEndomorphism (n : ℕ+) : AddMonoid.End NBar where
+  toFun x := trop (n : WithTop ℕ) * x
+  map_zero' := by rfl
+  map_add' x y := by
+    change trop (↑n : WithTop ℕ) * (x + y) =
+         trop (↑n : WithTop ℕ) * x + trop (↑n : WithTop ℕ) * y
+    rw [left_distrib]
+
+lemma frobenius_comp (m n : ℕ+) :
+    frobeniusEndomorphism (m + n) =
+    (frobeniusEndomorphism m).comp (frobeniusEndomorphism n) := by
+  ext x
+  change trop (↑↑(m + n) : WithTop ℕ) * x = trop (↑↑m : WithTop ℕ) * (trop (↑↑n : WithTop ℕ) * x)
+  rw [← mul_assoc]
+  congr 1
+
+/-- The Frobenius endomorphisms form a semigroup homomorphism from (ℕ+, +)
+    into AddMonoid.End NBar. -/
+lemma frobenius_map_add (m n : ℕ+) :
+    frobeniusEndomorphism (m + n) =
+    (frobeniusEndomorphism m).comp (frobeniusEndomorphism n) :=
+  frobenius_comp m n
+
+
 
 end ArithmeticSite
