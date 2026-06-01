@@ -1,4 +1,8 @@
-import Mathlib.Data.PNat.Basic
+module
+
+public import Mathlib.Data.PNat.Basic
+
+@[expose] public section
 
 /-!
 # The multiplicative monoid ℕˣ
