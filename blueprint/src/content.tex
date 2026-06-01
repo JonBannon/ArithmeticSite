@@ -1,7 +1,81 @@
-% In this file you should put the actual content of the blueprint.
-% It will be used both by the web and the print version.
-% It should *not* include the \begin{document}
-%
-% If you want to split the blueprint content into several files then
-% the current file can be a simple sequence of \input. Otherwise It
-% can start with a \section or \chapter for instance.
+\chapter{The multiplicative monoid $\Nplus$}
+
+\begin{definition}[label=def:Nplus]
+  Let $\Nplus$ denote the set $\{1, 2, 3, \ldots\}$ of strictly positive
+  integers equipped with ordinary multiplication. This is a commutative
+  monoid with unit $1$.
+
+  In Lean we represent this as \texttt{PNat} with its multiplicative
+  structure.
+\end{definition}
+
+\begin{definition}[label=def:BNplus, uses=def:Nplus]
+  The \emph{classifying category} $B\Nplus$ of $\Nplus$ is the
+  one-object category whose single object is $*$ and whose morphisms
+  $* \to *$ are the elements of $\Nplus$, with composition given by
+  multiplication.
+\end{definition}
+
+\chapter{The tropical semiring $\Nbar$}
+
+\begin{definition}[label=def:Nbar]
+  The \emph{tropical semiring} $\Nbar$ is the set
+  $\mathbb{N} \cup \{+\infty\}$ equipped with:
+  \begin{itemize}
+    \item \emph{Tropical addition}: $a \oplus b := \min(a, b)$, with
+          identity element $+\infty$.
+    \item \emph{Tropical multiplication}: $a \odot b := a + b$
+          (ordinary addition), with identity element $0$.
+  \end{itemize}
+  In Lean, $\Nbar$ is represented as \texttt{Tropical (WithTop ℕ)}.
+\end{definition}
+
+\begin{lemma}[label=lem:Nbar_semiring, uses=def:Nbar]
+  $\Nbar$ is a commutative semiring.
+\end{lemma}
+\begin{proof}
+  This follows from the Mathlib instance
+  \texttt{Tropical.instCommSemiring} applied to \texttt{WithTop ℕ}.
+\end{proof}
+
+\begin{lemma}[label=lem:Nbar_idempotent, uses=def:Nbar]
+  Tropical addition on $\Nbar$ is idempotent: $a \oplus a = a$ for all
+  $a \in \Nbar$.
+\end{lemma}
+\begin{proof}
+  $a \oplus a = \min(a,a) = a$.
+\end{proof}
+
+\begin{definition}[label=def:Nplus_action_Nbar, uses=def:Nplus, def:Nbar]
+  The monoid $\Nplus$ acts on $\Nbar$ by the \emph{Frobenius
+  endomorphisms}: for $n \in \Nplus$ and $x \in \Nbar$,
+  \[
+    \varphi_n(x) := n \odot x = n + x \quad (x \in \mathbb{N}),
+    \qquad \varphi_n(+\infty) := +\infty.
+  \]
+\end{definition}
+
+\begin{lemma}[label=lem:phi_n_semiring_hom, uses=def:Nplus_action_Nbar]
+  For each $n \in \Nplus$, the map $\varphi_n : \Nbar \to \Nbar$ is a
+  semiring homomorphism.
+\end{lemma}
+
+\chapter{The presheaf topos $\PSh{\Nplus}$}
+
+\begin{definition}[label=def:presheaf_topos, uses=def:BNplus]
+  The \emph{presheaf topos} $\PSh{\Nplus}$ is the category of functors
+  $B\Nplus^{\mathrm{op}} \to \Cat{Set}$, i.e.\ the category of sets
+  equipped with a left $\Nplus$-action. In Lean this is
+  \texttt{Action (Type*) (Multiplicative ℕ+)}.
+\end{definition}
+
+\begin{lemma}[label=lem:presheaf_topos_is_topos, uses=def:presheaf_topos]
+  $\PSh{\Nplus}$ is a Grothendieck topos.
+\end{lemma}
+\begin{proof}
+  Any presheaf category on a small category is a Grothendieck topos.
+\end{proof}
+
+\chapter{The structure sheaf}
+
+\begin{definition}
