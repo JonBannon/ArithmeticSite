@@ -52,3 +52,13 @@ jobs:
         with:
           blueprint: true
           homepage: home_page
+
+      - name: Diagnose docs output
+        run: |
+          echo "=== home_page/docs/ top-level ==="
+          ls home_page/docs/ 2>/dev/null || echo "(missing)"
+          echo "=== docbuild/.lake/build/doc/ top-level ==="
+          ls docbuild/.lake/build/doc/ 2>/dev/null || echo "(missing)"
+          echo "=== ../.lake/build/doc/ (main project) ==="
+          ls .lake/build/doc/ 2>/dev/null || echo "(missing)"
+        shell: bash
