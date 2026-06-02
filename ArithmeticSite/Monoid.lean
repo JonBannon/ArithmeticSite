@@ -17,6 +17,6 @@ namespace ArithmeticSite
 /-- The multiplicative monoid of positive integers. -/
 abbrev NPos := ℕ+
 
-instance : CommMonoid NPos := inferInstance
+instance NPos_commMonoid : CommMonoid NPos := inferInstance
 
 end ArithmeticSite

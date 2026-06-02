@@ -4,8 +4,6 @@ public import Mathlib.Algebra.Order.Group.Nat
 public import Mathlib.Algebra.Tropical.Basic
 public import ArithmeticSite.Monoid
 
-@[expose] public section
-
 /-!
 # The tropical semiring N̄
 
@@ -17,13 +15,15 @@ In Mathlib, this is `Tropical (WithTop ℕ)`:
 - Multiplication is `+` (ordinary addition), with identity `0`
 -/
 
+@[expose] public section
+
 namespace ArithmeticSite
 
 /-- The tropical semiring ℕ ∪ {+∞} with min-plus structure. -/
 abbrev NBar := Tropical (WithTop ℕ)
 
 /-- NBar is a commutative semiring. -/
-instance : CommSemiring NBar := inferInstance
+instance NBar_commSemiring : CommSemiring NBar := inferInstance
 
 open Tropical
 
