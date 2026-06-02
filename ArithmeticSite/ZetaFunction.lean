@@ -4,8 +4,6 @@ public import Mathlib.NumberTheory.LSeries.RiemannZeta
 public import Mathlib.Analysis.SpecialFunctions.Gamma.Basic
 public import ArithmeticSite.FrobeniusCorrespondences
 
-@[expose] public section
-
 /-!
 # The Riemann zeta function as the Hasse–Weil zeta of the Arithmetic Site
 
@@ -22,6 +20,7 @@ This is the central result of Connes–Consani (Theorem 2.7) and the main
 motivation for the construction of the Arithmetic Site.
 -/
 
+@[expose] public section
 namespace ArithmeticSite
 
 /-- The counting distribution N(u) recording the number of fixed points of the

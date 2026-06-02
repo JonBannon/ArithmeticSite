@@ -2,8 +2,6 @@ module
 
 public import ArithmeticSite.Points
 
-@[expose] public section
-
 /-!
 # The Frobenius correspondences
 
@@ -21,6 +19,8 @@ by the formula F(λ, q)(Σ qⁿⁱ ⊗ qᵐⁱ) = q^{inf(λnᵢ + mᵢ)}.
 The key theorem is that Frobenius correspondences compose multiplicatively:
 Ψ(λ) ∘ Ψ(λ') = Ψ(λλ').
 -/
+
+@[expose] public section
 
 namespace ArithmeticSite
 

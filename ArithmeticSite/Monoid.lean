@@ -2,7 +2,6 @@ module
 
 public import Mathlib.Data.PNat.Basic
 
-@[expose] public section
 
 /-!
 # The multiplicative monoid ℕˣ
@@ -12,6 +11,7 @@ commutative monoid under multiplication. This is the monoid
 whose classifying topos is the Arithmetic Site.
 -/
 
+@[expose] public section
 namespace ArithmeticSite
 
 /-- The multiplicative monoid of positive integers. -/

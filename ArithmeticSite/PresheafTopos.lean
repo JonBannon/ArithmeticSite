@@ -4,7 +4,6 @@ public import Mathlib.CategoryTheory.SingleObj
 public import Mathlib.CategoryTheory.Functor.Category
 public import ArithmeticSite.Monoid
 
-@[expose] public section
 
 /-!
 # The presheaf topos PSh(N+)
@@ -16,6 +15,8 @@ underlying the Arithmetic Site.
 Connes–Consani note that PSh(NPos) ≃ Sh(NPos, J) where J is the chaotic topology,
 so every presheaf is automatically a sheaf.
 -/
+
+@[expose] public section
 
 namespace ArithmeticSite
 

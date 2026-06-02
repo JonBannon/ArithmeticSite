@@ -3,8 +3,6 @@ module
 public import Mathlib.CategoryTheory.Limits.Shapes.Terminal
 public import ArithmeticSite.TheArithmeticSite
 
-@[expose] public section
-
 /-!
 # Points of the Arithmetic Site
 
@@ -16,6 +14,8 @@ The remarkable theorem of Connes–Consani (Theorem 2.2) is that the space of
 isomorphism classes of points of PSh(NPos) is canonically isomorphic to the
 adèle class space Q×₊ \ A_f / Ẑ*.
 -/
+
+@[expose] public section
 
 namespace ArithmeticSite
 
