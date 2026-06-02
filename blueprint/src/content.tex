@@ -36,8 +36,9 @@ reflect divisibility.
   The passage from a monoid $M$ to the one-object category $BM$ is the
   standard \emph{delooping} construction.  A presheaf on $BM$ — that is,
   a functor $BM^{\mathrm{op}} \to \Cat{Set}$ — is exactly a set $X$
-  equipped with a right action of $M$: each element $n \in M$ acts as a
+  equipped with a left action of $M$: each element $n \in M$ acts as a
   function $X \to X$, and the action is compatible with composition.
+  (Left and right actions coincide here since $\Nplus$ is commutative.)
   The presheaf topos $\PSh{\Nplus}$ introduced in
   Chapter~\ref{chap:presheaf_topos} is precisely the category of such
   sets-with-$\Nplus$-action, and it is in this topos that the Arithmetic
@@ -52,7 +53,14 @@ as Connes and Consani put it, $\Nbar$ is the semiring on which $\Nplus$
 acts by multiplication, and it is this action that makes $\Nbar$ into
 a sheaf of semirings over the topos $\widehat{B\Nplus}$.  The arithmetic
 of $\Nbar$ is characteristic-$1$ arithmetic --- addition is idempotent
---- which is the tropical, or max-plus, shadow of ordinary arithmetic.
+--- which is the tropical, or min-plus, shadow of ordinary arithmetic.
+Connes and Consani define $\Nbar$ explicitly as $(\mathbb{N} \cup \{\infty\},
+\inf, +)$, confirming the min-plus convention: addition is $\min$, with
+$+\infty$ as the additive identity.  When elements of $\Nbar$ are written
+as exponents $q^x$ for $q \in (0,1)$, the addition becomes $\max$ on
+values (since smaller exponent means larger value), which is why the
+stalks in the paper appear in max-plus form as $[0,1]_{\max}$ and
+$\mathbb{R}_{\max}$.
 
 \begin{definition}[label=def:Nbar]
   The \emph{tropical semiring} $\Nbar$ is the set
