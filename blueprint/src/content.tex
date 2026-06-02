@@ -175,6 +175,22 @@ $\mathbb{R}_{\max}$.
 
 \chapter{The structure sheaf}
 
+In classical algebraic geometry, a \emph{ringed space} is a topological
+space equipped with a sheaf of commutative rings --- the \emph{structure
+sheaf} --- whose stalks encode the local algebra of the space.  The
+Arithmetic Site is a \emph{ringed topos} in the same spirit: the role of
+the topological space is played by the presheaf topos $\PSh{\Nplus}$,
+and the role of the structure sheaf is played by $\Nbar$, viewed as a
+semiring object living inside that topos.
+
+An object of $\PSh{\Nplus}$ is a set equipped with a left
+$\Nplus$-action, so for $\Nbar$ to be a semiring \emph{object} of
+$\PSh{\Nplus}$ the action must be by semiring endomorphisms: each
+scaling map $\varphi_n$ must preserve both tropical operations and both
+identities.  This is exactly the content of
+Lemma~\ref{lem:scaling_semiring_hom}, which is therefore the key
+structural fact underlying the definition below.
+
 \begin{definition}[label=def:structure_sheaf,
                   uses=def:presheaf_topos, def:Nbar, def:scaling_action]
   The \emph{structure sheaf} $\mathcal{O}$ of the Arithmetic Site is the
