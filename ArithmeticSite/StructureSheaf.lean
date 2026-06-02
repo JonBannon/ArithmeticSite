@@ -26,18 +26,16 @@ both by rfl.
 
 @[expose] public section
 
-set_option linter.deprecated false
-
 namespace ArithmeticSite
 
-open CategoryTheory SingleObj
+open CategoryTheory SingleObj TypeCat
 
 /-- The structure sheaf O: NBar as a functor SingleObj NPos ⥤ Type, sending the
     single object to NBar and each n : NPos to the scaling endomorphism φₙ.
     This makes NBar a semiring object of PSh(NPos) as in Connes–Consani. -/
 def structureSheaf : PresheafTopos where
   obj _ := NBar
-  map f := asHom ⇑(scalingEndomorphism f)
+  map f := ofHom (scalingEndomorphism f)
   map_id x := by
     cases x  -- SingleObj NPos has one object; unfold it
     simp only [id_as_one]
@@ -51,8 +49,8 @@ def structureSheaf : PresheafTopos where
     obtain rfl : Y = star NPos := Subsingleton.elim _ _
     obtain rfl : Z = star NPos := Subsingleton.elim _ _
     -- Now f g : NPos; asHom h ≫ asHom k = asHom (k ∘ h) by rfl
-    rw [show (asHom ⇑(scalingEndomorphism f) ≫ asHom ⇑(scalingEndomorphism g)) =
-          asHom (⇑(scalingEndomorphism g) ∘ ⇑(scalingEndomorphism f)) from rfl]
+    rw [show (ofHom (scalingEndomorphism f) ≫ ofHom ⇑(scalingEndomorphism g)) =
+          ofHom ((scalingEndomorphism g) ∘ (scalingEndomorphism f)) from rfl]
     congr 1
     -- f ≫ g = g * f definitionally; chain scalingEndomorphism_comp and RingHom.coe_comp
     exact (congr_arg DFunLike.coe (scalingEndomorphism_comp g f).symm).trans
