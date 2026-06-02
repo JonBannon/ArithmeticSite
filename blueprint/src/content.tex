@@ -1,5 +1,14 @@
 \chapter{The multiplicative monoid \texorpdfstring{$\Nplus$}{N+}}
 
+The Arithmetic Site, introduced by Connes and Consani, is a geometric
+object — a topos equipped with a structure sheaf — whose points in the
+topos-theoretic sense are in natural bijection with the adèle class space
+of $\mathbb{Q}$.  Its construction begins with a single, elementary
+monoid: the positive integers under multiplication.  Everything else —
+the tropical semiring, the presheaf topos, the structure sheaf, and
+ultimately the connection to the Riemann zeta function — is built on top
+of this one piece of data.
+
 \begin{definition}[label=def:Nplus]
   Let $\Nplus$ denote the set $\{1, 2, 3, \ldots\}$ of strictly positive
   integers equipped with ordinary multiplication. This is a commutative
@@ -8,12 +17,30 @@
   structure, via the abbreviation \texttt{NPos}.
 \end{definition}
 
+The unique factorisation theorem says that $\Nplus$ is the free
+commutative monoid on the set of primes: every element factors uniquely
+as a finite product $\prod_p p^{a_p}$.  This freeness will not be used
+explicitly in what follows, but it is the arithmetic reason why the
+Arithmetic Site carries information about the prime numbers.
+
 \begin{definition}[label=def:BNplus, uses=def:Nplus]
   The \emph{classifying category} $B\Nplus$ of $\Nplus$ is the
   one-object category whose single object is $*$ and whose morphisms
   $* \to *$ are the elements of $\Nplus$, with composition given by
   multiplication.
 \end{definition}
+
+\begin{remark}
+  The passage from a monoid $M$ to the one-object category $BM$ is the
+  standard \emph{delooping} construction.  A presheaf on $BM$ — that is,
+  a functor $BM^{\mathrm{op}} \to \Cat{Set}$ — is exactly a set $X$
+  equipped with a right action of $M$: each element $n \in M$ acts as a
+  function $X \to X$, and the action is compatible with composition.
+  The presheaf topos $\PSh{\Nplus}$ introduced in
+  Chapter~\ref{chap:presheaf_topos} is precisely the category of such
+  sets-with-$\Nplus$-action, and it is in this topos that the Arithmetic
+  Site lives.
+\end{remark}
 
 \chapter{The tropical semiring \texorpdfstring{$\Nbar$}{Nbar}}
 
@@ -103,6 +130,7 @@
 \end{proof}
 
 \chapter{The presheaf topos \texorpdfstring{$\PSh{\Nplus}$}{PSh(N+)}}
+\label{chap:presheaf_topos}
 
 \begin{definition}[label=def:presheaf_topos, uses=def:BNplus]
   The \emph{presheaf topos} $\PSh{\Nplus}$ is the category of functors
