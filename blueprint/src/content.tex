@@ -26,9 +26,9 @@
     \item \emph{Tropical multiplication}: $a \odot b := a + b$
           (ordinary addition), with identity element $0$.
   \end{itemize}
-  In Lean, $\Nbar$ is represented as \texttt{Tropical (WithTop ℕ)},
+  In Lean, $\Nbar$ is represented as \texttt{Tropical (WithTop \mathbb{N})},
   via the abbreviation \texttt{NBar}.
-  The zero element is \texttt{trop ⊤} (i.e.\ $+\infty$) and the
+  The zero element is \texttt{trop $\top$} (i.e.\ $+\infty$) and the
   multiplicative identity is \texttt{trop 0}.
 \end{definition}
 
@@ -98,7 +98,7 @@
   For any $x \in \Nbar$:
   $(\varphi_m \circ \varphi_n)(x) = m + (n + x) = (m+n) + x = \varphi_{m+n}(x)$.
   In Lean this is \texttt{frobenius\_comp}, proved via \texttt{mul\_assoc}
-  in \texttt{Tropical (WithTop ℕ)}.
+  in \texttt{Tropical (WithTop \mathbb{N})}.
 \end{proof}
 
 \chapter{The presheaf topos \texorpdfstring{$\PSh{\Nplus}$}{PSh(N+)}}
@@ -107,12 +107,12 @@
   The \emph{presheaf topos} $\PSh{\Nplus}$ is the category of functors
   $B\Nplus^{\mathrm{op}} \to \Cat{Set}$, i.e.\ the category of sets
   equipped with a left $\Nplus$-action. In Lean this is
-  \texttt{Action (Type*) (Multiplicative ℕ+)}.
+  \texttt{Action (Type*) (Multiplicative \mathbb{N}+)}.
 \end{definition}
 
 \begin{lemma}[label=lem:presheaf_topos_is_topos, uses=def:presheaf_topos]
   $\PSh{\Nplus}$ is a Grothendieck topos.
-\end{lemma>
+\end{lemma}
 \begin{proof}
   Any presheaf category on a small category is a Grothendieck topos.
 \end{proof}
