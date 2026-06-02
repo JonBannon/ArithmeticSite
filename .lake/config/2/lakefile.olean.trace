@@ -1,6 +1,6 @@
 {"platform": "arm64-apple-darwin24.6.0",
  "options": {},
- "name": "checkdecls",
+ "name": "mathlib",
  "leanHash": "d024af099ca4bf2c86f649261ebf59565dc8c622",
- "idx": 1,
- "configHash": "ec0fbe7ca74bf2ca"}
+ "idx": 2,
+ "configHash": "908b4f730a0e38de"}

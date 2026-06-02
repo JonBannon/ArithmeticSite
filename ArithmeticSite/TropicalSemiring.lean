@@ -27,6 +27,10 @@ instance NBar_commSemiring : CommSemiring NBar := inferInstance
 
 open Tropical
 
+/-- Tropical addition on NBar is idempotent: a ⊕ a = a for all a. -/
+lemma NBar_add_idempotent (a : NBar) : a + a = a := by
+  simp only [Std.le_refl, Tropical.add_eq_left]
+
 /-- The action of n ∈ ℕ+ on NBar by scaling: x ↦ xⁿ (n-fold tropical
     multiplication, i.e. ordinary multiplication of the underlying element by n).
     This is a semiring endomorphism, making NBar into a semiring object of
