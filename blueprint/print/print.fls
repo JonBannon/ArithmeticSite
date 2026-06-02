@@ -158,6 +158,12 @@ INPUT /usr/local/texlive/2025/texmf-dist/tex/latex/graphics-cfg/color.cfg
 INPUT /usr/local/texlive/2025/texmf-dist/tex/latex/graphics/mathcolor.ltx
 INPUT /usr/local/texlive/2025/texmf-dist/tex/latex/graphics/mathcolor.ltx
 INPUT /usr/local/texlive/2025/texmf-dist/tex/latex/graphics/mathcolor.ltx
+INPUT /Users/jon/ArithmeticSite/blueprint/print/print.out
+INPUT /Users/jon/ArithmeticSite/blueprint/print/print.out
+INPUT /Users/jon/ArithmeticSite/blueprint/print/print.out
+INPUT /Users/jon/ArithmeticSite/blueprint/print/print.out
+INPUT /Users/jon/ArithmeticSite/blueprint/print/print.out
+INPUT /Users/jon/ArithmeticSite/blueprint/print/print.out
 OUTPUT /Users/jon/ArithmeticSite/blueprint/print/print.out
 INPUT /usr/local/texlive/2025/texmf-dist/fonts/tfm/public/cm/cmmi12.tfm
 INPUT /usr/local/texlive/2025/texmf-dist/fonts/tfm/public/cm/cmmi8.tfm

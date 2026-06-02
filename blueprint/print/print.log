@@ -458,12 +458,11 @@ Package color Info: Driver file: xetex.def on input line 149.
 
 (/usr/local/texlive/2025/texmf-dist/tex/latex/graphics/mathcolor.ltx))
 Package hyperref Info: Link coloring ON on input line 32.
+
+(/Users/jon/ArithmeticSite/blueprint/print/print.out)
+(/Users/jon/ArithmeticSite/blueprint/print/print.out)
 \@outlinefile=\write3
 \openout3 = `print.out'.
-
-
-
-Package hyperref Warning: Rerun to get /PageLabels entry.
 
 LaTeX Font Info:    Overwriting math alphabet `\mathrm' in version `normal'
 (Font)                  OT1/cmr/m/n --> TU/lmr/m/n on input line 32.
@@ -658,6 +657,7 @@ LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
 (Font)              scaled to size 5.99936pt on input line 34.
 LaTeX Font Info:    Trying to load font information for U+msa on input line 34.
 
+
 (/usr/local/texlive/2025/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
@@ -697,10 +697,6 @@ LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
 (Font)              scaled to size 4.99947pt on input line 6.
 
-LaTeX Warning: Reference `chap:presheaf_topos' on page 1 undefined on input lin
-e 45.
-
-
 
 [1
 
@@ -719,11 +715,6 @@ pical (WithTop $[]$))\TU/lmr/m/n/10 , found by \TU/lmtt/m/n/10 inferInstance\TU
 
 ]
 
-LaTeX Warning: Reference `chap:frobenius_correspondences' on page 3 undefined o
-n input line 158.
-
-
-
 [3]
 Chapter 3.
 
@@ -733,68 +724,10 @@ Chapter 3.
 ]
 Chapter 4.
 
-LaTeX Warning: Reference `lem:scaling_semiring_hom' on page 5 undefined on inpu
-t line 234.
-
-
 Overfull \hbox (7.65326pt too wide) in paragraph at lines 247--251
 [][]\TU/lmr/bx/n/10 Lemma 4.2. []\TU/lmr/m/it/10 The assignment $[] [] [][]$ de
 fines a monoid homomorphism $[][][][] [][] [] [][][][][]$,
  []
-
-
-LaTeX Warning: Reference `lem:scaling_semiring_hom' on page 5 undefined on inpu
-t line 254.
-
-
-LaTeX Warning: Reference `lem:scaling_comp' on page 5 undefined on input line 2
-56.
-
-
-LaTeX Warning: Reference `lem:structure_sheaf_action' on page 5 undefined on in
-put line 267.
-
-! Missing { inserted.
-<to be read again> 
-                   \__um_group_begin: 
-l.279 ... field: just as $\mathcal{O}_{K_\mathfrak
-                                                  {p}} =
-A left brace was mandatory here, so I've put one in.
-You might want to delete and/or insert some corrections
-so that I will find a matching right brace soon.
-(If you're confused by all this, try typing `I}' now.)
-
-! Missing { inserted.
-<to be read again> 
-                   \__um_group_begin: 
-l.280   \{ x \in K_\mathfrak
-                            {p} \mid |x| \leq 1 \}$ in $p$-adic geometry, the
-A left brace was mandatory here, so I've put one in.
-You might want to delete and/or insert some corrections
-so that I will find a matching right brace soon.
-(If you're confused by all this, try typing `I}' now.)
-
-! Missing } inserted.
-<inserted text> 
-                }
-l.280 ... x \in K_\mathfrak{p} \mid |x| \leq 1 \}$
-                                                   in $p$-adic geometry, the
-I've inserted something that you may have forgotten.
-(See the <inserted text> above.)
-With luck, this will get me unwedged. But if you
-really didn't forget anything, try typing `2' now; then
-my insertion and my current dilemma will both disappear.
-
-! Missing } inserted.
-<inserted text> 
-                }
-l.280 ... x \in K_\mathfrak{p} \mid |x| \leq 1 \}$
-                                                   in $p$-adic geometry, the
-I've inserted something that you may have forgotten.
-(See the <inserted text> above.)
-With luck, this will get me unwedged. But if you
-really didn't forget anything, try typing `2' now; then
-my insertion and my current dilemma will both disappear.
 
 
 
@@ -829,27 +762,14 @@ Chapter 8.
 LaTeX2e <2024-11-01> patch level 2
 L3 programming layer <2025-01-18>
  ***********
-
-
-LaTeX Warning: There were undefined references.
-
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
-
-Package rerunfilecheck Warning: File `print.out' has changed.
-(rerunfilecheck)                Rerun to get outlines right
-(rerunfilecheck)                or use package `bookmark'.
-
-Package rerunfilecheck Info: Checksums for `print.out':
-(rerunfilecheck)             Before: <no file>
-(rerunfilecheck)             After:  A56CF35067208AC08C2D8A2467F279B0;1444.
+Package rerunfilecheck Info: File `print.out' has not changed.
+(rerunfilecheck)             Checksum: A56CF35067208AC08C2D8A2467F279B0;1444.
  ) 
 Here is how much of TeX's memory you used:
- 16853 strings out of 473832
- 311224 string characters out of 5729482
- 905329 words of memory out of 5000000
- 39704 multiletter control sequences out of 15000+600000
+ 16859 strings out of 473832
+ 311452 string characters out of 5729482
+ 904329 words of memory out of 5000000
+ 39706 multiletter control sequences out of 15000+600000
  567115 words of font info for 106 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
  90i,6n,107p,542b,475s stack positions out of 10000i,1000n,20000p,200000b,200000s
