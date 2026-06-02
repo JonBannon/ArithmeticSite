@@ -10,6 +10,7 @@ ultimately the connection to the Riemann zeta function — is built on top
 of this one piece of data.
 
 \begin{definition}[label=def:Nplus]
+  \label{def:Nplus}
   Let $\Nplus$ denote the set $\{1, 2, 3, \ldots\}$ of strictly positive
   integers equipped with ordinary multiplication. This is a commutative
   monoid with unit $1$.
@@ -28,7 +29,7 @@ $\mathbb{Q}$, and that the Hasse--Weil zeta function of the site
 recovers the Riemann zeta function.
 
 \begin{definition}[label=def:BNplus, uses=def:Nplus]
-  \uses{def:Nplus}
+  \label{def:BNplus}\uses{def:Nplus}
   The \emph{classifying category} $B\Nplus$ of $\Nplus$ is the
   one-object category whose single object is $*$ and whose morphisms
   $* \to *$ are the elements of $\Nplus$, with composition given by
@@ -66,6 +67,7 @@ stalks in the paper appear in max-plus form as $[0,1]_{\max}$ and
 $\mathbb{R}_{\max}$.
 
 \begin{definition}[label=def:Nbar]
+  \label{def:Nbar}
   The \emph{tropical semiring} $\Nbar$ is the set
   $\mathbb{N} \cup \{+\infty\}$ equipped with:
   \begin{itemize}
@@ -81,7 +83,7 @@ $\mathbb{R}_{\max}$.
 \end{definition}
 
 \begin{lemma}[label=lem:Nbar_semiring, uses=def:Nbar]
-  \uses{def:Nbar}
+  \label{lem:Nbar_semiring}\uses{def:Nbar}
   $\Nbar$ is a commutative semiring.
 \end{lemma}
 \begin{proof}
@@ -91,7 +93,7 @@ $\mathbb{R}_{\max}$.
 \end{proof}
 
 \begin{lemma}[label=lem:Nbar_idempotent, uses=def:Nbar]
-  \uses{def:Nbar}
+  \label{lem:Nbar_idempotent}\uses{def:Nbar}
   Tropical addition on $\Nbar$ is idempotent: $a \oplus a = a$ for all
   $a \in \Nbar$.
 \end{lemma}
@@ -111,7 +113,7 @@ $\mathbb{R}_{\max}$.
 \end{remark}
 
 \begin{definition}[label=def:scaling_action, uses=def:Nbar, def:Nplus]
-  \uses{def:Nbar, def:Nplus}
+  \label{def:scaling_action}\uses{def:Nbar, def:Nplus}
   For each $n \in \Nplus$, the \emph{scaling endomorphism}
   $\varphi_n : \Nbar \to \Nbar$ is defined by
   \[
@@ -126,7 +128,7 @@ $\mathbb{R}_{\max}$.
 \end{definition}
 
 \begin{lemma}[label=lem:scaling_semiring_hom, uses=def:scaling_action, lem:Nbar_semiring]
-  \uses{def:scaling_action, lem:Nbar_semiring}
+  \label{lem:scaling_semiring_hom}\uses{def:scaling_action, lem:Nbar_semiring}
   For each $n \in \Nplus$, the map $\varphi_n$ is a semiring endomorphism
   of $\Nbar$: it preserves both operations and both identities.
 \end{lemma}
@@ -140,7 +142,7 @@ $\mathbb{R}_{\max}$.
 \end{proof}
 
 \begin{lemma}[label=lem:scaling_comp, uses=def:scaling_action]
-  \uses{def:scaling_action}
+  \label{lem:scaling_comp}\uses{def:scaling_action}
   The scaling endomorphisms compose multiplicatively:
   \[
     \varphi_m \circ \varphi_n = \varphi_{mn}
@@ -187,7 +189,7 @@ $\Nplus$; the Arithmetic Site itself uses the coarser chaotic topology,
 where that combinatorial structure is not needed.
 
 \begin{definition}[label=def:presheaf_topos, uses=def:BNplus]
-  \uses{def:BNplus}
+  \label{def:presheaf_topos}\uses{def:BNplus}
   The \emph{presheaf topos} $\PSh{\Nplus}$ is the category of functors
   $B{\Nplus}^{\mathrm{op}} \to \Cat{Set}$, i.e.\ the category of sets
   equipped with a left $\Nplus$-action. In Lean this is
@@ -195,7 +197,7 @@ where that combinatorial structure is not needed.
 \end{definition}
 
 \begin{lemma}[label=lem:presheaf_topos_is_topos, uses=def:presheaf_topos]
-  \uses{def:presheaf_topos}
+  \label{lem:presheaf_topos_is_topos}\uses{def:presheaf_topos}
   $\PSh{\Nplus}$ is a Grothendieck topos.
 \end{lemma}
 \begin{proof}
@@ -244,7 +246,7 @@ structural fact underlying the definition below.
 
 \begin{definition}[label=def:structure_sheaf,
                   uses=def:presheaf_topos, def:Nbar, def:scaling_action]
-  \uses{def:presheaf_topos, def:Nbar, def:scaling_action}
+  \label{def:structure_sheaf}\uses{def:presheaf_topos, def:Nbar, def:scaling_action}
   The \emph{structure sheaf} $\mathcal{O}$ of the Arithmetic Site is the
   object of $\PSh{\Nplus}$ whose underlying set is $\Nbar$ and whose
   $\Nplus$-action is given by the scaling endomorphisms:
@@ -253,7 +255,7 @@ structural fact underlying the definition below.
 
 \begin{lemma}[label=lem:structure_sheaf_action,
              uses=def:structure_sheaf, lem:scaling_comp, lem:scaling_semiring_hom]
-  \uses{def:structure_sheaf, lem:scaling_comp, lem:scaling_semiring_hom}
+  \label{lem:structure_sheaf_action}\uses{def:structure_sheaf, lem:scaling_comp, lem:scaling_semiring_hom}
   The assignment $n \mapsto \varphi_n$ defines a monoid homomorphism
   $(\Nplus, \times) \to \mathrm{End}_{\mathrm{Semiring}}(\Nbar)$,
   making $\Nbar$ into a semiring object of $\PSh{\Nplus}$ with
@@ -305,7 +307,7 @@ point.  Their combination is the Arithmetic Site.
 
 \begin{definition}[label=def:arithmetic_site,
                   uses=def:presheaf_topos, def:structure_sheaf]
-  \uses{def:presheaf_topos, def:structure_sheaf}
+  \label{def:arithmetic_site}\uses{def:presheaf_topos, def:structure_sheaf}
   The \emph{Arithmetic Site} is the ringed topos $(\PSh{\Nplus}, \mathcal{O})$
   consisting of the presheaf topos $\PSh{\Nplus}$ together with its
   structure sheaf $\mathcal{O} = \Nbar$.
@@ -340,7 +342,7 @@ non-commutative space that already appears in Connes' spectral approach
 to the Riemann hypothesis.
 
 \begin{definition}[label=def:topos_point, uses=def:presheaf_topos]
-  \uses{def:presheaf_topos}
+  \label{def:topos_point}\uses{def:presheaf_topos}
   A \emph{point} of a topos $\mathcal{E}$ is a geometric morphism
   $p : \Cat{Set} \to \mathcal{E}$, i.e.\ an adjoint pair
   $p^* \dashv p_*$ where $p^*$ is left exact.
@@ -364,7 +366,7 @@ to the Riemann hypothesis.
 
 \begin{theorem}[label=thm:points_are_adele_classes,
                uses=def:topos_point, def:arithmetic_site]
-  \uses{def:topos_point, def:arithmetic_site}
+  \label{thm:points_are_adele_classes}\uses{def:topos_point, def:arithmetic_site}
   The space of isomorphism classes of points of $\PSh{\Nplus}$ is
   canonically isomorphic to the double quotient
   \[
@@ -419,7 +421,7 @@ and extended to irrational $\lambda$ by diophantine approximation.
 
 \begin{definition}[label=def:frobenius_correspondence,
                   uses=def:arithmetic_site, def:scaling_action]
-  \uses{def:arithmetic_site, def:scaling_action}
+  \label{def:frobenius_correspondence}\uses{def:arithmetic_site, def:scaling_action}
   For each $\lambda \in \Qplus$, the \emph{Frobenius correspondence}
   $\Phi_\lambda$ is the reduced correspondence on the square of the
   Arithmetic Site defined by the formula $F(\lambda, q)$ above.  It
@@ -431,7 +433,7 @@ and extended to irrational $\lambda$ by diophantine approximation.
 \begin{theorem}[label=thm:frobenius_are_correspondences,
                uses=def:frobenius_correspondence,
                thm:points_are_adele_classes]
-  \uses{def:frobenius_correspondence, thm:points_are_adele_classes}
+  \label{thm:frobenius_are_correspondences}\uses{def:frobenius_correspondence, thm:points_are_adele_classes}
   The Frobenius correspondences compose multiplicatively:
   $\Phi_\lambda \circ \Phi_{\lambda'} = \Phi_{\lambda\lambda'}$ for all
   $\lambda, \lambda' \in \Qplus$ (with a canonical correction term when
@@ -475,7 +477,7 @@ and the zeta function is recovered by a standard Mellin-type transform.
 
 \begin{theorem}[label=thm:zeta_counting,
                uses=thm:frobenius_are_correspondences]
-  \uses{thm:frobenius_are_correspondences}
+  \label{thm:zeta_counting}\uses{thm:frobenius_are_correspondences}
   The zeta function $\zeta_N$ defined by
   \[
     \frac{\partial_s \zeta_N(s)}{\zeta_N(s)}
