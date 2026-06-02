@@ -25,32 +25,35 @@ abbrev NBar := Tropical (WithTop ℕ)
 /-- NBar is a commutative semiring. -/
 instance : CommSemiring NBar := inferInstance
 
-lemma NBar_add_idempotent (a : NBar) : a + a = a := by
-  simp only [Std.le_refl, Tropical.add_eq_left]
-
 open Tropical
 
-def frobeniusEndomorphism (n : ℕ+) : AddMonoid.End NBar where
-  toFun x := trop (n : WithTop ℕ) * x
-  map_zero' := by rfl
+/-- The action of n ∈ ℕ+ on NBar by scaling: x ↦ xⁿ (n-fold tropical
+    multiplication, i.e. ordinary multiplication of the underlying element by n).
+    This is a semiring endomorphism, making NBar into a semiring object of
+    the presheaf topos over BNPos with NPos acting by multiplication,
+    as in Connes–Consani "On the Arithmetic Site". -/
+def scalingEndomorphism (n : ℕ+) : NBar →+* NBar where
+  toFun x := x ^ (n : ℕ)
+  map_one' := one_pow _
+  map_mul' x y := mul_pow x y _
+  map_zero' := zero_pow n.ne_zero
   map_add' x y := by
-    change trop (↑n : WithTop ℕ) * (x + y) =
-         trop (↑n : WithTop ℕ) * x + trop (↑n : WithTop ℕ) * y
-    rw [left_distrib]
+    apply untrop_injective
+    simp only [untrop_add, untrop_pow]
+    rcases le_total (untrop x) (untrop y) with h | h
+    · simp [inf_eq_left.mpr h, inf_eq_left.mpr (nsmul_le_nsmul_right h _)]
+    · simp [inf_eq_right.mpr h, inf_eq_right.mpr (nsmul_le_nsmul_right h _)]
 
-lemma frobenius_comp (m n : ℕ+) :
-    frobeniusEndomorphism (m + n) =
-    (frobeniusEndomorphism m).comp (frobeniusEndomorphism n) := by
+/-- The scaling endomorphisms compose multiplicatively:
+    applying scalingEndomorphism n then scalingEndomorphism m
+    equals scalingEndomorphism (m * n). -/
+lemma scalingEndomorphism_comp (m n : ℕ+) :
+    (scalingEndomorphism m).comp (scalingEndomorphism n) = scalingEndomorphism (m * n) := by
   ext x
-  change trop (↑↑(m + n) : WithTop ℕ) * x = trop (↑↑m : WithTop ℕ) * (trop (↑↑n : WithTop ℕ) * x)
-  rw [← mul_assoc]
+  simp only [RingHom.comp_apply, scalingEndomorphism, RingHom.coe_mk,
+             MonoidHom.coe_mk, OneHom.coe_mk]
+  rw [← pow_mul]
   congr 1
-
-/-- The Frobenius endomorphisms form a semigroup homomorphism from (ℕ+, +)
-    into AddMonoid.End NBar. -/
-lemma frobenius_map_add (m n : ℕ+) :
-    frobeniusEndomorphism (m + n) =
-    (frobeniusEndomorphism m).comp (frobeniusEndomorphism n) :=
-  frobenius_comp m n
+  exact mul_comm _ _
 
 end ArithmeticSite

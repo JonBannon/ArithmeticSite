@@ -1,7 +1,7 @@
 # Fdb version 4
-["pdflatex"] 1780364752.3672 "print.tex" "/Users/jon/ArithmeticSite/blueprint/print/print.pdf" "print" 1780364753.16477 0
-  "/Users/jon/ArithmeticSite/blueprint/print/print.aux" 1780364752.96484 2968 5a68c15fe14fd7c2da9f6041f893000f "pdflatex"
-  "/Users/jon/ArithmeticSite/blueprint/print/print.out" 1780364752.96526 1444 a56cf35067208ac08c2d8a2467f279b0 "pdflatex"
+["pdflatex"] 1780366947.05562 "print.tex" "/Users/jon/ArithmeticSite/blueprint/print/print.pdf" "print" 1780366947.85326 0
+  "/Users/jon/ArithmeticSite/blueprint/print/print.aux" 1780366947.65727 3065 6e4f71e5d1100c951d2e68fab45d5a2b "pdflatex"
+  "/Users/jon/ArithmeticSite/blueprint/print/print.out" 1780366947.65764 1444 a56cf35067208ac08c2d8a2467f279b0 "pdflatex"
   "/usr/local/texlive/2025/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/local/texlive/2025/texmf-dist/fonts/tfm/adobe/zapfding/pzdr.tfm" 1136768653 1528 f853c4d1b4e0550255e02831fdc8496f ""
   "/usr/local/texlive/2025/texmf-dist/fonts/tfm/public/amsfonts/symbols/msam10.tfm" 1246382020 916 f87d7c45f9c908e672703b83b72241a3 ""
@@ -84,7 +84,7 @@
   "/usr/local/texlive/2025/texmf-var/web2c/xetex/xelatex.fmt" 1741450550 5639796 b6822fbf027c6598cec2e241e0925725 ""
   "/usr/local/texlive/2025/texmf.cnf" 1741450484 577 418a7058ec8e006d8704f60ecd22c938 ""
   "blueprint.sty" 1780343304.11006 64 041de65dd253d01ad50ada0ef6772cd2 ""
-  "content.tex" 1780364744.902 8804 0ea0016c8e35f08a2fbd26d1161a9627 ""
+  "content.tex" 1780366939.01886 10083 a2d59a73c821669a4064deb75caf1237 ""
   "macros/common.tex" 1780344948.76084 604 bfc291d1c6b08df8ab12be477420f28b ""
   "macros/print.tex" 1780363586.7516 3171 2eb57a92657898c1a1001db3c3ce2633 ""
   "print.tex" 1780359928.43647 1136 fcc6f0d973bfe5703a3ea6a70780c901 ""

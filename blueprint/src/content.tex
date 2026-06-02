@@ -46,6 +46,14 @@ reflect divisibility.
 
 \chapter{The tropical semiring \texorpdfstring{$\Nbar$}{Nbar}}
 
+The tropical semiring $\Nbar$ is the second fundamental ingredient of
+the Arithmetic Site.  It plays the role of the \emph{structure sheaf}:
+as Connes and Consani put it, $\Nbar$ is the semiring on which $\Nplus$
+acts by multiplication, and it is this action that makes $\Nbar$ into
+a sheaf of semirings over the topos $\widehat{B\Nplus}$.  The arithmetic
+of $\Nbar$ is characteristic-$1$ arithmetic --- addition is idempotent
+--- which is the tropical, or max-plus, shadow of ordinary arithmetic.
+
 \begin{definition}[label=def:Nbar]
   The \emph{tropical semiring} $\Nbar$ is the set
   $\mathbb{N} \cup \{+\infty\}$ equipped with:
@@ -79,57 +87,66 @@ reflect divisibility.
   \texttt{Tropical.add\_eq\_left}.
 \end{proof}
 
-\begin{definition}[label=def:frobenius, uses=def:Nbar]
-  For each $n \in \Nplus$, the \emph{Frobenius endomorphism}
-  $\varphi_n : \Nbar \to \Nbar$ is defined by
-  \[
-    \varphi_n(x) := n + x \quad (x \in \mathbb{N}),
-    \qquad \varphi_n(+\infty) := +\infty,
-  \]
-  where $+$ denotes ordinary addition in $\mathbb{N} \cup \{+\infty\}$.
-  Equivalently, in \texttt{Tropical (WithTop $\mathbb{N}$)}, this is
-  tropical multiplication by \texttt{trop (n : WithTop $\mathbb{N}$)},
-  i.e.\ $\varphi_n(x) = \texttt{trop}\, n \odot x$.
-
-  In Lean, $\varphi_n$ is defined as an \texttt{AddMonoid.End NBar}
-  via \texttt{frobeniusEndomorphism}.
-\end{definition}
-
-\begin{lemma}[label=lem:frobenius_addmon_hom, uses=def:frobenius]
-  For each $n \in \Nplus$, the map $\varphi_n : \Nbar \to \Nbar$ is an
-  additive monoid endomorphism, i.e.\ it preserves tropical addition and
-  the zero element $+\infty$:
-  \begin{align*}
-    \varphi_n(+\infty) &= +\infty, \\
-    \varphi_n(a \oplus b) &= \varphi_n(a) \oplus \varphi_n(b).
-  \end{align*}
-  The second identity follows from the distributivity
-  $n + \min(a,b) = \min(n+a, n+b)$.
-\end{lemma}
-
 \begin{remark}
-  Note that $\varphi_n$ is \emph{not} a semiring homomorphism in general,
-  since it does not preserve the multiplicative identity:
-  $\varphi_n(0) = n \neq 0$ for $n > 0$.
-  It is however a homomorphism of $\Nbar$-modules.
+  Idempotency of addition --- equivalently, the identity $1 \oplus 1 = 1$
+  --- is the defining feature of \emph{characteristic $1$} arithmetic.
+  It is what places $\Nbar$ in the same conceptual family as finite fields
+  $\mathbb{F}_p$ (characteristic $p$), with $\min$ playing the role that
+  $+\bmod p$ plays there.  The scaling endomorphisms defined below are the
+  characteristic-$1$ analogue of the Frobenius endomorphism $x \mapsto x^p$
+  of $\mathbb{F}_p$.
 \end{remark}
 
-\begin{lemma}[label=lem:frobenius_comp, uses=def:frobenius]
-  The Frobenius endomorphisms satisfy the composition law
+\begin{definition}[label=def:scaling_action, uses=def:Nbar]
+  For each $n \in \Nplus$, the \emph{scaling endomorphism}
+  $\varphi_n : \Nbar \to \Nbar$ is defined by
   \[
-    \varphi_m \circ \varphi_n = \varphi_{m+n}
+    \varphi_n(x) := nx \quad (x \in \mathbb{N}),
+    \qquad \varphi_n(+\infty) := +\infty,
   \]
-  for all $m, n \in \Nplus$. In particular, the map
-  $n \mapsto \varphi_n$ is a semigroup homomorphism from
-  $(\Nplus, +)$ into the endomorphism semigroup
-  $\mathrm{End}_{\mathrm{AddMon}}(\Nbar)$.
+  where $nx$ denotes ordinary multiplication in $\mathbb{N}$.
+  Equivalently, $\varphi_n(x) = x^{\odot n}$, the $n$-fold tropical
+  product of $x$ with itself.
+  In Lean, $\varphi_n$ is defined as a semiring endomorphism
+  \texttt{NBar~->+*~NBar} via \texttt{scalingEndomorphism}.
+\end{definition}
+
+\begin{lemma}[label=lem:scaling_semiring_hom, uses=def:scaling_action]
+  For each $n \in \Nplus$, the map $\varphi_n$ is a semiring endomorphism
+  of $\Nbar$: it preserves both operations and both identities.
 \end{lemma}
 \begin{proof}
-  For any $x \in \Nbar$:
-  $(\varphi_m \circ \varphi_n)(x) = m + (n + x) = (m+n) + x = \varphi_{m+n}(x)$.
-  In Lean this is \texttt{frobenius\_comp}, proved via \texttt{mul\_assoc}
-  in \texttt{Tropical (WithTop $\mathbb{N}$)}.
+  Preservation of $+\infty$ and of tropical multiplication are immediate.
+  Preservation of tropical addition uses $n \cdot \min(a,b) = \min(na,nb)$
+  for $n > 0$, which holds because scaling by $n$ is order-preserving on
+  $\mathbb{N} \cup \{+\infty\}$.  In Lean this is the \texttt{map\_add'}
+  field of \texttt{scalingEndomorphism}, proved via monotonicity of
+  \texttt{nsmul} and a case split on \texttt{le\_total}.
 \end{proof}
+
+\begin{lemma}[label=lem:scaling_comp, uses=def:scaling_action]
+  The scaling endomorphisms compose multiplicatively:
+  \[
+    \varphi_m \circ \varphi_n = \varphi_{mn}
+  \]
+  for all $m, n \in \Nplus$.  In particular, the map $n \mapsto \varphi_n$
+  is a monoid homomorphism from $(\Nplus, \times)$ into the semiring
+  endomorphism monoid $\mathrm{End}_{\mathrm{Semiring}}(\Nbar)$.
+\end{lemma}
+\begin{proof}
+  $(\varphi_m \circ \varphi_n)(x) = m(nx) = (mn)x = \varphi_{mn}(x)$.
+  In Lean this is \texttt{scalingEndomorphism\_comp}, proved via
+  \texttt{pow\_mul}.
+\end{proof}
+
+\begin{remark}
+  The Frobenius \emph{correspondences} $\Psi(\lambda)$, parametrised by
+  $\lambda \in \Qplus$, are a more refined object: they live in the
+  \emph{square} $\widehat{B{\Nplus}^2}$ of the Arithmetic Site and are
+  defined via the action of $\Nplus \times \Nplus$ on
+  $\Nbar \otimes_{\mathbb{B}} \Nbar$.  They are introduced in
+  Chapter~\ref{chap:frobenius_correspondences}.
+\end{remark}
 
 \chapter{The presheaf topos \texorpdfstring{$\PSh{\Nplus}$}{PSh(N+)}}
 \label{chap:presheaf_topos}
@@ -151,18 +168,19 @@ reflect divisibility.
 \chapter{The structure sheaf}
 
 \begin{definition}[label=def:structure_sheaf,
-                  uses=def:presheaf_topos, def:Nbar, def:frobenius]
+                  uses=def:presheaf_topos, def:Nbar, def:scaling_action]
   The \emph{structure sheaf} $\mathcal{O}$ of the Arithmetic Site is the
   object of $\PSh{\Nplus}$ whose underlying set is $\Nbar$ and whose
-  $\Nplus$-action is given by the Frobenius endomorphisms:
-  $n \cdot x := \varphi_n(x)$.
+  $\Nplus$-action is given by the scaling endomorphisms:
+  $n \cdot x := \varphi_n(x) = nx$.
 \end{definition}
 
 \begin{lemma}[label=lem:structure_sheaf_action,
-             uses=def:structure_sheaf, lem:frobenius_comp]
-  The assignment $n \mapsto \varphi_n$ defines a semigroup homomorphism
-  $(\Nplus, +) \to \mathrm{End}_{\mathrm{AddMon}}(\Nbar)$,
-  making $\Nbar$ into a left $(\Nplus, +)$-module.
+             uses=def:structure_sheaf, lem:scaling_comp]
+  The assignment $n \mapsto \varphi_n$ defines a monoid homomorphism
+  $(\Nplus, \times) \to \mathrm{End}_{\mathrm{Semiring}}(\Nbar)$,
+  making $\Nbar$ into a semiring object of $\PSh{\Nplus}$ with
+  $\Nplus$ acting by multiplication.
 \end{lemma}
 
 \chapter{The Arithmetic Site}
@@ -192,6 +210,7 @@ reflect divisibility.
 \end{proof}
 
 \chapter{The Frobenius correspondences}
+\label{chap:frobenius_correspondences}
 
 \begin{definition}[label=def:frobenius_correspondence,
                   uses=def:arithmetic_site]
