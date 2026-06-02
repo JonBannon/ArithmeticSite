@@ -107,7 +107,7 @@ $\mathbb{R}_{\max}$.
   of $\mathbb{F}_p$.
 \end{remark}
 
-\begin{definition}[label=def:scaling_action, uses=def:Nbar]
+\begin{definition}[label=def:scaling_action, uses=def:Nbar, def:Nplus]
   For each $n \in \Nplus$, the \emph{scaling endomorphism}
   $\varphi_n : \Nbar \to \Nbar$ is defined by
   \[
@@ -121,7 +121,7 @@ $\mathbb{R}_{\max}$.
   \texttt{NBar~->+*~NBar} via \texttt{scalingEndomorphism}.
 \end{definition}
 
-\begin{lemma}[label=lem:scaling_semiring_hom, uses=def:scaling_action]
+\begin{lemma}[label=lem:scaling_semiring_hom, uses=def:scaling_action, lem:Nbar_semiring]
   For each $n \in \Nplus$, the map $\varphi_n$ is a semiring endomorphism
   of $\Nbar$: it preserves both operations and both identities.
 \end{lemma}
@@ -243,7 +243,7 @@ structural fact underlying the definition below.
 \end{definition}
 
 \begin{lemma}[label=lem:structure_sheaf_action,
-             uses=def:structure_sheaf, lem:scaling_comp]
+             uses=def:structure_sheaf, lem:scaling_comp, lem:scaling_semiring_hom]
   The assignment $n \mapsto \varphi_n$ defines a monoid homomorphism
   $(\Nplus, \times) \to \mathrm{End}_{\mathrm{Semiring}}(\Nbar)$,
   making $\Nbar$ into a semiring object of $\PSh{\Nplus}$ with
@@ -405,7 +405,7 @@ the correspondence is defined by the formula
 and extended to irrational $\lambda$ by diophantine approximation.
 
 \begin{definition}[label=def:frobenius_correspondence,
-                  uses=def:arithmetic_site]
+                  uses=def:arithmetic_site, def:scaling_action]
   For each $\lambda \in \Qplus$, the \emph{Frobenius correspondence}
   $\Phi_\lambda$ is the reduced correspondence on the square of the
   Arithmetic Site defined by the formula $F(\lambda, q)$ above.  It
