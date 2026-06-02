@@ -249,6 +249,39 @@ structural fact underlying the definition below.
   making $\Nbar$ into a semiring object of $\PSh{\Nplus}$ with
   $\Nplus$ acting by multiplication.
 \end{lemma}
+\begin{proof}
+  Each $\varphi_n$ is a semiring endomorphism by
+  Lemma~\ref{lem:scaling_semiring_hom}.  The homomorphism property
+  $\varphi_{mn} = \varphi_m \circ \varphi_n$ is
+  Lemma~\ref{lem:scaling_comp}, and $\varphi_1 = \mathrm{id}$ since
+  $\varphi_1(x) = 1 \cdot x = x$.  In Lean this is
+  \texttt{scalingEndomorphism\_comp}.
+\end{proof}
+
+\begin{remark}
+  Since the Arithmetic Site uses the chaotic topology, every presheaf on
+  $B\Nplus$ is automatically a sheaf --- there are no gluing conditions
+  to verify.  The content of the structure sheaf is therefore entirely
+  algebraic: $\Nbar$ is not merely a set with $\Nplus$-action, but a
+  semiring whose operations are \emph{preserved} by that action.  This
+  is what Lemma~\ref{lem:structure_sheaf_action} records.
+\end{remark}
+
+\begin{remark}
+  Connes and Consani (Theorem~2.4 of their 2014 paper) describe the
+  stalks of $\mathcal{O}$ explicitly.  At the point corresponding to an
+  intermediate semifield $F \subset K \subset \bar{F}$, the stalk is
+  \[
+    \mathcal{O}_K = \{ r \in K \mid r \oplus 1 = 1 \},
+  \]
+  the subsemiring of elements that are ``bounded above by $1$'' in the
+  ordering of $K$.  This is the characteristic-$1$ analogue of the ring
+  of integers of a local field: just as $\mathcal{O}_{K_\mathfrak{p}} =
+  \{ x \in K_\mathfrak{p} \mid |x| \leq 1 \}$ in $p$-adic geometry, the
+  stalk of $\mathcal{O}$ picks out the elements of norm at most $1$.
+  At the ``generic'' point (corresponding to $K = F = Z_{\max}$) the
+  stalk recovers $\Nbar$ itself.
+\end{remark}
 
 \chapter{The Arithmetic Site}
 
