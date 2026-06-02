@@ -159,6 +159,25 @@ $\mathbb{R}_{\max}$.
 \chapter{The presheaf topos \texorpdfstring{$\PSh{\Nplus}$}{PSh(N+)}}
 \label{chap:presheaf_topos}
 
+The topos underlying the Arithmetic Site is the simplest kind: a
+presheaf topos.  Its objects are sets equipped with a left
+$\Nplus$-action by arbitrary functions --- not necessarily bijections,
+since $\Nplus$ is a monoid rather than a group --- and its morphisms are
+$\Nplus$-equivariant maps between them.  The multiplicative structure of
+$\Nplus$ is entirely encoded in the composition of these actions: if $n$
+and $m$ act on a set $X$, then $nm$ acts as the composite $x \mapsto
+n \cdot (m \cdot x)$.
+
+Connes and Consani note that $\PSh{\Nplus} \simeq
+\mathrm{Sh}(\Nplus, J)$, where $J$ is the \emph{chaotic topology} on
+$\Nplus$ --- the topology in which every presheaf is already a sheaf.
+This means there are no genuine gluing conditions to check: the topos is
+simply the presheaf category, with no further data.  The covering
+families arising from factorizations of integers, foreshadowed in
+Chapter~1, reflect a finer site structure that one \emph{can} put on
+$\Nplus$; the Arithmetic Site itself uses the coarser chaotic topology,
+where that combinatorial structure is not needed.
+
 \begin{definition}[label=def:presheaf_topos, uses=def:BNplus]
   The \emph{presheaf topos} $\PSh{\Nplus}$ is the category of functors
   $B{\Nplus}^{\mathrm{op}} \to \Cat{Set}$, i.e.\ the category of sets
@@ -171,7 +190,29 @@ $\mathbb{R}_{\max}$.
 \end{lemma}
 \begin{proof}
   Any presheaf category on a small category is a Grothendieck topos.
+  The site is $(\Nplus, J)$ where $J$ is the chaotic topology.
 \end{proof}
+
+\begin{remark}
+  The points of $\PSh{\Nplus}$ --- geometric morphisms from $\Cat{Set}$
+  to $\PSh{\Nplus}$ --- are the deep link to number theory.  Connes and
+  Consani prove (Theorem~2.2 of their 2014 paper) that the category of points
+  of $\PSh{\Nplus}$ is canonically equivalent to the category of totally
+  ordered groups isomorphic to non-trivial subgroups of
+  $(\mathbb{Q}, \mathbb{Q}_+)$.  The space of isomorphism classes of
+  such points is canonically isomorphic to the double quotient
+  \[
+    \Qplus \backslash \Af / \Zhat^*,
+  \]
+  where $\Af$ is the ring of finite ad\`eles of $\mathbb{Q}$ and
+  $\Zhat^* = \hat{\mathbb{Z}}^\times$ is the group of units of the
+  profinite completion of $\mathbb{Z}$.  This quotient is a piece of the
+  ad\`ele class space of $\mathbb{Q}$, the same space that appears in
+  Connes' noncommutative-geometric approach to the Riemann
+  hypothesis.  The structure sheaf $\mathcal{O} = \Nbar$ then equips
+  this space with characteristic-$1$ geometry, whose Hasse--Weil zeta
+  function recovers the Riemann zeta function.
+\end{remark}
 
 \chapter{The structure sheaf}
 
