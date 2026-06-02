@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999997 (TeX Live 2025) (preloaded format=xelatex 2025.3.8)  1 JUN 2026 21:36
+This is XeTeX, Version 3.141592653-2.6-0.999997 (TeX Live 2025) (preloaded format=xelatex 2025.3.8)  1 JUN 2026 21:45
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -703,7 +703,7 @@ LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
 ]
 Chapter 2.
 
-Overfull \hbox (36.35834pt too wide) in paragraph at lines 66--69
+Overfull \hbox (36.35834pt too wide) in paragraph at lines 68--71
 []\TU/lmr/m/n/10 This is the Mathlib instance \TU/lmtt/m/n/10 CommSemiring (Tro
 pical (WithTop $[]$))\TU/lmr/m/n/10 , found by \TU/lmtt/m/n/10 inferInstance\TU
 /lmr/m/n/10 .
@@ -724,7 +724,7 @@ Chapter 3.
 ]
 Chapter 4.
 
-Overfull \hbox (19.03427pt too wide) in paragraph at lines 161--164
+Overfull \hbox (19.03427pt too wide) in paragraph at lines 163--166
 [][]\TU/lmr/bx/n/10 Lemma 4.2. []\TU/lmr/m/it/10 The assignment $[] [] [][]$ de
 fines a semigroup homomorphism $[][][][] [][] [] [][][][][]$,
  []
@@ -768,7 +768,7 @@ Package rerunfilecheck Info: File `print.out' has not changed.
 Here is how much of TeX's memory you used:
  16865 strings out of 473832
  311553 string characters out of 5729482
- 905329 words of memory out of 5000000
+ 904329 words of memory out of 5000000
  39709 multiletter control sequences out of 15000+600000
  567131 words of font info for 108 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
