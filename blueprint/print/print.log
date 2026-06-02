@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999997 (TeX Live 2025) (preloaded format=xelatex 2025.3.8)  1 JUN 2026 22:58
+This is XeTeX, Version 3.141592653-2.6-0.999997 (TeX Live 2025) (preloaded format=xelatex 2025.3.8)  1 JUN 2026 23:04
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -703,7 +703,7 @@ LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
 ]
 Chapter 2.
 
-Overfull \hbox (36.35834pt too wide) in paragraph at lines 86--89
+Overfull \hbox (36.35834pt too wide) in paragraph at lines 88--91
 []\TU/lmr/m/n/10 This is the Mathlib instance \TU/lmtt/m/n/10 CommSemiring (Tro
 pical (WithTop $[]$))\TU/lmr/m/n/10 , found by \TU/lmtt/m/n/10 inferInstance\TU
 /lmr/m/n/10 .
@@ -724,9 +724,9 @@ Chapter 3.
 ]
 Chapter 4.
 
-Overfull \hbox (7.65326pt too wide) in paragraph at lines 247--251
-[][]\TU/lmr/bx/n/10 Lemma 4.2. []\TU/lmr/m/it/10 The assignment $[] [] [][]$ de
-fines a monoid homomorphism $[][][][] [][] [] [][][][][]$,
+Overfull \hbox (7.65326pt too wide) in paragraph at lines 256--261
+[][]\TU/lmr/bx/n/10 Lemma 4.2. [][][][]\TU/lmr/m/it/10 The assignment $[] [] []
+[]$ defines a monoid homomorphism $[][][][] [][] [] [][][][][]$,
  []
 
 
@@ -754,7 +754,7 @@ Chapter 7.
 ]
 Chapter 8.
 
-Overfull \hbox (23.98741pt too wide) in paragraph at lines 446--452
+Overfull \hbox (23.98741pt too wide) in paragraph at lines 461--467
 []\TU/lmr/m/n/10 The precise mechanism runs through Connes’ distributional trac
 e formula. If $[] [] [][][][][][][][][][][][]$
  []
@@ -778,7 +778,7 @@ Here is how much of TeX's memory you used:
  39706 multiletter control sequences out of 15000+600000
  567115 words of font info for 106 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
- 90i,6n,107p,542b,475s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 90i,6n,107p,542b,483s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
 Output written on /Users/jon/ArithmeticSite/blueprint/print/print.pdf (10 pages
 ).
