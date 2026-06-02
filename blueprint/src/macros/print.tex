@@ -28,3 +28,40 @@
  {\clist_map_inline:nn{#1}{\vphantom{\ref{##1}}}%
   \ignorespaces}
 \ExplSyntaxOff
+
+% Redefine theorem environments to handle blueprint [label=..., uses=...] options.
+% Uses expl3 regex to extract only the label= value; ignores uses/proves and any
+% continuation values after commas (e.g. uses=foo, bar, baz).
+\ExplSyntaxOn
+
+\tl_new:N  \l__bpthm_label_tl
+\seq_new:N \l__bpthm_match_seq
+
+\cs_new:Nn \__bpthm_apply:n {
+  \tl_clear:N \l__bpthm_label_tl
+  \regex_extract_once:nnNTF
+    { label \s* = \s* ( [^\s,]+ ) }
+    {#1}
+    \l__bpthm_match_seq
+    {
+      \tl_set:Nx \l__bpthm_label_tl { \seq_item:Nn \l__bpthm_match_seq {2} }
+      \tl_if_empty:NF \l__bpthm_label_tl { \exp_args:NV \label \l__bpthm_label_tl }
+    }
+    {}
+}
+
+\let \__bpthm_orig_theorem:        \theorem        \let \__bpthm_orig_endtheorem:        \endtheorem
+\let \__bpthm_orig_proposition:    \proposition    \let \__bpthm_orig_endproposition:    \endproposition
+\let \__bpthm_orig_lemma:          \lemma          \let \__bpthm_orig_endlemma:          \endlemma
+\let \__bpthm_orig_corollary:      \corollary      \let \__bpthm_orig_endcorollary:      \endcorollary
+\let \__bpthm_orig_definition:     \definition     \let \__bpthm_orig_enddefinition:     \enddefinition
+\let \__bpthm_orig_remark:         \remark         \let \__bpthm_orig_endremark:         \endremark
+
+\RenewDocumentEnvironment {theorem}     {O{}} {\__bpthm_orig_theorem:     \__bpthm_apply:n {#1}} {\__bpthm_orig_endtheorem:}
+\RenewDocumentEnvironment {proposition} {O{}} {\__bpthm_orig_proposition: \__bpthm_apply:n {#1}} {\__bpthm_orig_endproposition:}
+\RenewDocumentEnvironment {lemma}       {O{}} {\__bpthm_orig_lemma:       \__bpthm_apply:n {#1}} {\__bpthm_orig_endlemma:}
+\RenewDocumentEnvironment {corollary}   {O{}} {\__bpthm_orig_corollary:   \__bpthm_apply:n {#1}} {\__bpthm_orig_endcorollary:}
+\RenewDocumentEnvironment {definition}  {O{}} {\__bpthm_orig_definition:  \__bpthm_apply:n {#1}} {\__bpthm_orig_enddefinition:}
+\RenewDocumentEnvironment {remark}      {O{}} {\__bpthm_orig_remark:      \__bpthm_apply:n {#1}} {\__bpthm_orig_endremark:}
+
+\ExplSyntaxOff
