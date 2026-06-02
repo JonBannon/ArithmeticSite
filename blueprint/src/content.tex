@@ -26,7 +26,7 @@
     \item \emph{Tropical multiplication}: $a \odot b := a + b$
           (ordinary addition), with identity element $0$.
   \end{itemize}
-  In Lean, $\Nbar$ is represented as \texttt{Tropical (WithTop \mathbb{N})},
+  In Lean, $\Nbar$ is represented as \texttt{Tropical (WithTop $\mathbb{N}$)},
   via the abbreviation \texttt{NBar}.
   The zero element is \texttt{trop $\top$} (i.e.\ $+\infty$) and the
   multiplicative identity is \texttt{trop 0}.
@@ -36,7 +36,8 @@
   $\Nbar$ is a commutative semiring.
 \end{lemma}
 \begin{proof}
-  This is the Mathlib instance \texttt{CommSemiring (Tropical (WithTop ℕ))},
+  This is the Mathlib instance
+  \texttt{CommSemiring (Tropical (WithTop $\mathbb{N}$))},
   found by \texttt{inferInstance}.
 \end{proof}
 
@@ -57,9 +58,9 @@
     \qquad \varphi_n(+\infty) := +\infty,
   \]
   where $+$ denotes ordinary addition in $\mathbb{N} \cup \{+\infty\}$.
-  Equivalently, in \texttt{Tropical (WithTop ℕ)}, this is tropical
-  multiplication by \texttt{trop (n : WithTop ℕ)}, i.e.\
-  $\varphi_n(x) = \texttt{trop}\, n \odot x$.
+  Equivalently, in \texttt{Tropical (WithTop $\mathbb{N}$)}, this is
+  tropical multiplication by \texttt{trop (n : WithTop $\mathbb{N}$)},
+  i.e.\ $\varphi_n(x) = \texttt{trop}\, n \odot x$.
 
   In Lean, $\varphi_n$ is defined as an \texttt{AddMonoid.End NBar}
   via \texttt{frobeniusEndomorphism}.
@@ -98,7 +99,7 @@
   For any $x \in \Nbar$:
   $(\varphi_m \circ \varphi_n)(x) = m + (n + x) = (m+n) + x = \varphi_{m+n}(x)$.
   In Lean this is \texttt{frobenius\_comp}, proved via \texttt{mul\_assoc}
-  in \texttt{Tropical (WithTop \mathbb{N})}.
+  in \texttt{Tropical (WithTop $\mathbb{N}$)}.
 \end{proof}
 
 \chapter{The presheaf topos \texorpdfstring{$\PSh{\Nplus}$}{PSh(N+)}}
@@ -107,7 +108,7 @@
   The \emph{presheaf topos} $\PSh{\Nplus}$ is the category of functors
   $B\Nplus^{\mathrm{op}} \to \Cat{Set}$, i.e.\ the category of sets
   equipped with a left $\Nplus$-action. In Lean this is
-  \texttt{Action (Type*) (Multiplicative \mathbb{N}+)}.
+  \texttt{Action (Type*) (Multiplicative $\mathbb{N}$+)}.
 \end{definition}
 
 \begin{lemma}[label=lem:presheaf_topos_is_topos, uses=def:presheaf_topos]
@@ -132,7 +133,7 @@
   The assignment $n \mapsto \varphi_n$ defines a semigroup homomorphism
   $(\Nplus, +) \to \mathrm{End}_{\mathrm{AddMon}}(\Nbar)$,
   making $\Nbar$ into a left $(\Nplus, +)$-module.
-\end{lemma>
+\end{lemma}
 
 \chapter{The Arithmetic Site}
 
