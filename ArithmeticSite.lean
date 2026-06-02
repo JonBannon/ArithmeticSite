@@ -1,4 +1,3 @@
-import ArithmeticSite.Basic
 import ArithmeticSite.Monoid
 import ArithmeticSite.TropicalSemiring
 import ArithmeticSite.PresheafTopos
