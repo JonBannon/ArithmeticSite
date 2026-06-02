@@ -35,7 +35,7 @@ abbrev BNplus := SingleObj NPos
     equivalently sets equipped with a left NPos-action.  Since NPos is
     commutative, covariant and contravariant functors coincide up to
     isomorphism. -/
-abbrev PresheafTopos := SingleObj NPos ⥤ Type*
+abbrev PresheafTopos := SingleObj NPos ⥤ Type
 
 /-- PSh(NPos) is a Grothendieck topos.  This follows from the general fact
     that any presheaf category on a small category is a Grothendieck topos;

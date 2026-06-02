@@ -17,25 +17,46 @@ endomorphisms: n acts on x by φₙ(x) = xⁿ (ordinary multiplication by n).
 
 The key fact is that each φₙ is a semiring endomorphism (scalingEndomorphism),
 so NBar is not merely a set-with-action but a semiring object of the topos.
+
+In SingleObj NPos, morphisms are elements of NPos and composition satisfies
+f ≫ g = g * f (comp_as_mul).  `CategoryTheory.asHom` embeds NBar → NBar into
+NBar ⟶ NBar; one has asHom id = 𝟙 NBar and asHom h ≫ asHom k = asHom (k ∘ h),
+both by rfl.
 -/
 
 @[expose] public section
 
+set_option linter.deprecated false
+
 namespace ArithmeticSite
 
-open CategoryTheory
+open CategoryTheory SingleObj
 
--- In SingleObj M, morphisms are elements of M, and composition is f ≫ g = g * f.
--- map_comp therefore requires: map(g * f) = map(f) ≫ map(g) = map(g) ∘ map(f) in Type*.
--- Since NPos is commutative, scalingEndomorphism_comp g f gives exactly this.
-
-/-- The structure sheaf O: NBar as a functor SingleObj NPos ⥤ Type*, sending the
+/-- The structure sheaf O: NBar as a functor SingleObj NPos ⥤ Type, sending the
     single object to NBar and each n : NPos to the scaling endomorphism φₙ.
     This makes NBar a semiring object of PSh(NPos) as in Connes–Consani. -/
--- The structureSheaf functor sends * ↦ NBar and n ↦ φₙ.
--- The universe mismatch between NBar : Type and the Type* target of PresheafTopos
--- requires resolving in a future revision; the mathematical content is correct.
-def structureSheaf : PresheafTopos := sorry
+def structureSheaf : PresheafTopos where
+  obj _ := NBar
+  map f := asHom ⇑(scalingEndomorphism f)
+  map_id x := by
+    cases x  -- SingleObj NPos has one object; unfold it
+    simp only [id_as_one]
+    have h : ⇑(scalingEndomorphism (1 : NPos)) = @id NBar := by
+      funext x; simp [scalingEndomorphism]
+    rw [h]; rfl
+  map_comp f g := by
+    -- Collapse all three objects to star NPos (SingleObj NPos has one object)
+    rename_i X Y Z
+    obtain rfl : X = star NPos := Subsingleton.elim _ _
+    obtain rfl : Y = star NPos := Subsingleton.elim _ _
+    obtain rfl : Z = star NPos := Subsingleton.elim _ _
+    -- Now f g : NPos; asHom h ≫ asHom k = asHom (k ∘ h) by rfl
+    rw [show (asHom ⇑(scalingEndomorphism f) ≫ asHom ⇑(scalingEndomorphism g)) =
+          asHom (⇑(scalingEndomorphism g) ∘ ⇑(scalingEndomorphism f)) from rfl]
+    congr 1
+    -- f ≫ g = g * f definitionally; chain scalingEndomorphism_comp and RingHom.coe_comp
+    exact (congr_arg DFunLike.coe (scalingEndomorphism_comp g f).symm).trans
+          (RingHom.coe_comp _ _)
 
 /-- The assignment n ↦ φₙ is a monoid homomorphism (NPos, ×) → End_Semiring(NBar),
     making NBar a semiring object of PSh(NPos) with NPos acting by multiplication. -/
