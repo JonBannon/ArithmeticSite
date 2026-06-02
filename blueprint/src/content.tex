@@ -285,14 +285,48 @@ structural fact underlying the definition below.
 
 \chapter{The Arithmetic Site}
 
+All the ingredients are now in place.  The presheaf topos $\PSh{\Nplus}$
+provides the geometric stage: a Grothendieck topos whose points are
+parametrised by the ad\`ele class space of $\mathbb{Q}$.  The tropical
+semiring $\Nbar$, equipped with its $\Nplus$-action by scaling
+endomorphisms, is a semiring object of $\PSh{\Nplus}$: it plays the role
+of the ring of functions, recording characteristic-$1$ algebra at every
+point.  Their combination is the Arithmetic Site.
+
 \begin{definition}[label=def:arithmetic_site,
                   uses=def:presheaf_topos, def:structure_sheaf]
-  The \emph{Arithmetic Site} is the pair $(\PSh{\Nplus}, \mathcal{O})$
+  The \emph{Arithmetic Site} is the ringed topos $(\PSh{\Nplus}, \mathcal{O})$
   consisting of the presheaf topos $\PSh{\Nplus}$ together with its
-  structure sheaf $\mathcal{O}$.
+  structure sheaf $\mathcal{O} = \Nbar$.
 \end{definition}
 
+\begin{remark}
+  The Arithmetic Site is a \emph{ringed topos of characteristic $1$}:
+  its structure sheaf is a semiring with idempotent addition ($a \oplus
+  a = a$), placing the entire construction in the world of tropical
+  algebra rather than classical commutative ring theory.  Connes and
+  Consani describe it as the ``algebraic geometric incarnation'' of the
+  non-commutative geometric approach to the Riemann hypothesis: the site
+  provides a geometric framework, analogous to the function-field setting
+  of the Weil proof, in which the relevant $L$-function --- the Riemann
+  zeta function --- arises as a Hasse--Weil zeta function.  The
+  subsequent chapters make this precise by analysing the points of the
+  site and the Frobenius correspondences acting on them.
+\end{remark}
+
 \chapter{Points of the topos}
+
+In topos theory a \emph{point} of a topos $\mathcal{E}$ generalises the
+notion of a point of a topological space: it is a geometric morphism
+$p : \Cat{Set} \to \mathcal{E}$, pulling back each sheaf to its stalk.
+For a presheaf topos $\widehat{C}$, points correspond to flat functors
+$C \to \Cat{Set}$.  For $\PSh{\Nplus} = \widehat{B\Nplus}$ this means
+a point is a \emph{flat $\Nplus$-set}: a set $X$ with a $\Nplus$-action
+that arises as a filtered colimit of free $\Nplus$-sets.  The remarkable
+theorem of Connes--Consani is that such sets are classified, up to
+isomorphism, by the ad\`ele class space of $\mathbb{Q}$ --- a
+non-commutative space that already appears in Connes' spectral approach
+to the Riemann hypothesis.
 
 \begin{definition}[label=def:topos_point, uses=def:presheaf_topos]
   A \emph{point} of a topos $\mathcal{E}$ is a geometric morphism
@@ -300,42 +334,146 @@ structural fact underlying the definition below.
   $p^* \dashv p_*$ where $p^*$ is left exact.
 \end{definition}
 
+\begin{remark}
+  For $\PSh{\Nplus}$, the flat $\Nplus$-sets admit a concrete
+  classification.  A $\Nplus$-set $X$ is flat if and only if it is
+  isomorphic (as an ordered $\Nplus$-set) to a non-trivial subgroup of
+  $(\mathbb{Q}, \mathbb{Q}_+)$ with the action of $n \in \Nplus$ by
+  multiplication.  The isomorphism classes of such subgroups are in
+  natural bijection with elements of the double quotient
+  $\Qplus \backslash \Af / \Zhat^*$: an ad\`ele $a \in \Af$ determines
+  a subgroup $H_a = \{ q \in \mathbb{Q} \mid qa \in \Zhat \}$ of
+  $\mathbb{Q}$, and two ad\`eles give isomorphic subgroups precisely when
+  they lie in the same double coset.  The rational ad\`eles $a \in
+  \mathbb{Q}^\times$ yield the single isomorphism class $\mathbb{Z}$,
+  which is why the purely rational part of the space corresponds to the
+  ``points over $\mathbb{B}$'' in the sense of Connes--Consani.
+\end{remark}
+
 \begin{theorem}[label=thm:points_are_adele_classes,
                uses=def:topos_point, def:arithmetic_site]
-  The points of $\PSh{\Nplus}$ are in natural bijection with the
-  adèle class space $\Qplus \backslash \Af / \Zhat^*$.
+  The space of isomorphism classes of points of $\PSh{\Nplus}$ is
+  canonically isomorphic to the double quotient
+  \[
+    \Qplus \backslash \Af / \Zhat^*,
+  \]
+  a piece of the ad\`ele class space of $\mathbb{Q}$.  More precisely,
+  the category of points of $\PSh{\Nplus}$ is equivalent to the category
+  of totally ordered groups isomorphic to non-trivial subgroups of
+  $(\mathbb{Q}, \mathbb{Q}_+)$, with injective order-preserving
+  homomorphisms as morphisms.
 \end{theorem}
 \begin{proof}
-  \sorry
+  This is Theorem~2.2 of Connes--Consani (2014).  Points of
+  $\PSh{\Nplus}$ correspond to flat $\Nplus$-sets, which are identified
+  with non-trivial subgroups of $(\mathbb{Q}, \mathbb{Q}_+)$ by a direct
+  analysis of the flatness condition.  The double quotient description
+  then follows from the identification $H_a = \{ q \in \mathbb{Q} \mid
+  qa \in \Zhat\}$ described in the remark above. \sorry
 \end{proof}
 
 \chapter{The Frobenius correspondences}
 \label{chap:frobenius_correspondences}
 
+The Frobenius correspondences are the analogue, in characteristic $1$,
+of the Frobenius endomorphisms of a variety over a finite field.  They
+do not act on the Arithmetic Site itself --- that would require
+endomorphisms of the ringed topos $(\PSh{\Nplus}, \mathcal{O})$ ---
+but rather on its \emph{square} $(\widehat{B{\Nplus}^2},
+\Nbar \otimes_{\mathbb{B}} \Nbar)$, where $\mathbb{B} = (\{0,1\},
+\max, \times)$ is the Boolean semifield.  The square is obtained by
+taking the product topos $\PSh{\Nplus} \times \PSh{\Nplus}$ and
+equipping it with the tensor product of structure sheaves.
+
+For each pair $(n, m) \in \Nplus \times \Nplus$, Connes and Consani
+define an endomorphism $\mathrm{Fr}_{n,m}$ of $\Nbar \otimes_{\mathbb{B}}
+\Nbar$ by
+\[
+  \mathrm{Fr}_{n,m}\!\left(\sum_i q^{a_i} \otimes q^{b_i}\right)
+  := \sum_i q^{na_i} \otimes q^{mb_i},
+\]
+scaling the two factors independently.  The Frobenius correspondence at
+a rational $\lambda = n/m \in \Qplus$ (with $n, m$ coprime) is then
+$\Phi_\lambda := \mu \circ \mathrm{Fr}_{n,m}$, where $\mu : \Nbar
+\otimes_{\mathbb{B}} \Nbar \to \Nbar$ is the product map
+$\mu(q^a \otimes q^b) = q^{a+b}$.  For general $\lambda \in \Qplus$
+the correspondence is defined by the formula
+\[
+  F(\lambda, q)\!\left(\sum_i q^{n_i} \otimes q^{m_i}\right)
+  = q^{\,\inf_i(\lambda n_i + m_i)},
+\]
+and extended to irrational $\lambda$ by diophantine approximation.
+
 \begin{definition}[label=def:frobenius_correspondence,
                   uses=def:arithmetic_site]
   For each $\lambda \in \Qplus$, the \emph{Frobenius correspondence}
-  $\Phi_\lambda$ is a correspondence on $\PSh{\Nplus} \times \PSh{\Nplus}$
-  arising from the scaling action of $\Qplus$ on the adèle class space.
+  $\Phi_\lambda$ is the reduced correspondence on the square of the
+  Arithmetic Site defined by the formula $F(\lambda, q)$ above.  It
+  acts on the points of $(\PSh{\Nplus}, \mathcal{O})$ over $[0,1]_{\max}$
+  by the scaling map $x \mapsto \lambda x$ on the underlying ad\`ele
+  class space.
 \end{definition}
 
 \begin{theorem}[label=thm:frobenius_are_correspondences,
                uses=def:frobenius_correspondence,
                thm:points_are_adele_classes]
-  The Frobenius correspondences realize the scaling action of $\Qplus$
-  on the adèle class space at the level of the topos $\PSh{\Nplus}$.
+  The Frobenius correspondences compose multiplicatively:
+  $\Phi_\lambda \circ \Phi_{\lambda'} = \Phi_{\lambda\lambda'}$ for all
+  $\lambda, \lambda' \in \Qplus$ (with a canonical correction term when
+  $\lambda, \lambda'$ are both irrational and $\lambda\lambda' \in
+  \Qplus$).  In particular, $\lambda \mapsto \Phi_\lambda$ is a
+  homomorphism from $(\Qplus, \times)$ into the composition monoid of
+  correspondences on the square.
 \end{theorem}
 \begin{proof}
+  This is Theorem~4.3 of Connes--Consani (2014).  The composition law
+  follows from the formula for $F(\lambda, q)$ and the identification of
+  the range semirings $R(\lambda)$ described in their Section~3.
   \sorry
 \end{proof}
 
 \chapter{Connection to the Riemann zeta function}
 
+The Frobenius correspondences $\Phi_\lambda$ act on the points of the
+Arithmetic Site over $[0,1]_{\max}$, which are parametrised by the
+ad\`ele class space.  Counting the fixed points of $\Phi_\lambda$ as
+$\lambda$ varies produces a \emph{counting distribution} $N(u)$, and
+the zeta function assembled from $N(u)$ via the Hasse--Weil formula
+turns out to be the complete Riemann zeta function.  This is the
+central result of Connes--Consani and the main motivation for the
+entire construction.
+
+The precise mechanism runs through Connes' distributional trace formula.
+If $G = \mathrm{GL}_1(\mathbb{A}_{\mathbb{Q}})/\mathrm{GL}_1(\mathbb{Q})$
+is the id\`ele class group and $\vartheta_u\xi(x) = \xi(u^{-1}x)$ is
+its scaling action on functions on the ad\`ele class space, then for
+test functions $h(u) = g(|u|)$ supported away from $1$ the trace
+formula gives
+\[
+  \mathrm{Tr}_{\mathrm{distr}}\!\left(\int_G h(u)\,\vartheta_u\,d^*u\right)
+  = \sum_{v \in \Sigma_{\mathbb{Q}}} \int_{Q_v^*}
+    \frac{h(u^{-1})}{|1-u|}\,d^*u,
+\]
+where the sum runs over all places of $\mathbb{Q}$.  The counting
+distribution $N(u)$ is read off from the geometric side of this formula,
+and the zeta function is recovered by a standard Mellin-type transform.
+
 \begin{theorem}[label=thm:zeta_counting,
                uses=thm:frobenius_are_correspondences]
-  The Hasse--Weil zeta function of the Arithmetic Site recovers the
-  Riemann zeta function $\zeta(s)$.
+  The zeta function $\zeta_N$ defined by
+  \[
+    \frac{\partial_s \zeta_N(s)}{\zeta_N(s)}
+    = -\int_1^\infty N(u)\,u^{-s}\,d^*u
+  \]
+  from the counting distribution $N(u)$ of the Frobenius action on
+  points of $(\PSh{\Nplus}, \mathcal{O})$ over $[0,1]_{\max}$ is the
+  complete Riemann zeta function
+  $\zeta_{\mathbb{Q}}(s) = \pi^{-s/2}\,\Gamma(s/2)\,\zeta(s)$.
 \end{theorem}
 \begin{proof}
-  \sorry
+  This is Theorem~2.7 of Connes--Consani (2014).  The counting
+  distribution $N(u)$ is identified via Theorem~2.6 with the geometric
+  term of Connes' trace formula applied to the scaling action of
+  $\mathbb{R}^*_+$ on the ad\`ele class space, and the result then
+  follows from the computation in Connes--Consani (2010).  \sorry
 \end{proof}
